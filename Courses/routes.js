@@ -4,6 +4,10 @@ export default function CourseRoutes(app) {
   const createCourse = async (req, res) => {
     try {
       const currentUser = req.session["currentUser"];
+      if (!currentUser) {
+        res.sendStatus(401);
+        return;
+      }
       const course = await dao.createCourse({
         ...req.body,
         authorId: currentUser._id,

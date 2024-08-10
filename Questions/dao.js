@@ -2,7 +2,7 @@ import model from "./model.js";
 import quizModel from "../Quizzes/model.js";
 export const createQuestion = async (quizId, question) => {
   delete question._id;
-  const newQuestion = model.create({
+  const newQuestion = await model.create({
     ...question,
     quiz: quizId,
   });
