@@ -2,11 +2,17 @@ import mongoose from "mongoose";
 const courseSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
-    number: { type: String, required: true },
-    startDate: { type: String, required: true },
-    endDate: { type: String, required: true },
+    startDate: Date,
+    endDate: Date,
     credits: Number,
     description: String,
+    enrollers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Users",
+      },
+    ],
+    authorId: { type: mongoose.Schema.Types.ObjectId, required: true },
   },
   { collection: "courses" }
 );
