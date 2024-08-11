@@ -15,14 +15,8 @@ import AssignmentRoutes from "./Kanbas/Assignments/routes.js";
 
 const CONNECTION_STRING =
   process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kanbas";
-mongoose
-  .connect(CONNECTION_STRING)
-  .then(() => console.log("mongoose connect succeed"));
-
+mongoose.connect(CONNECTION_STRING);
 const app = express();
-
-app.set("trust proxy", 1);
-app.use(express.json());
 app.use(
   cors({
     credentials: true,
@@ -33,9 +27,6 @@ const sessionOptions = {
   secret: process.env.SESSION_SECRET || "kanbas",
   resave: false,
   saveUninitialized: false,
-  cookie: {
-    maxAge: 60 * 1000 * 60,
-  },
 };
 if (process.env.NODE_ENV !== "development") {
   sessionOptions.proxy = true;
@@ -46,7 +37,7 @@ if (process.env.NODE_ENV !== "development") {
   };
 }
 app.use(session(sessionOptions));
-
+app.use(express.json());
 UserRoutes(app);
 Lab5(app);
 CourseRoutes(app);
@@ -56,5 +47,4 @@ QuestionRoutes(app);
 QuizRoutes(app);
 GradeRoutes(app);
 Hello(app);
-
 app.listen(process.env.PORT || 4000);
