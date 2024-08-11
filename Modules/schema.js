@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
-const lessonSchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true },
-  module: { type: String, required: true },
-  description: String,
-});
+// const lessonSchema = new mongoose.Schema({
+//   name: { type: String, required: true, unique: true },
+//   module: { type: String, required: true },
+//   description: String,
+// });
 const moduleSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
     course: { type: String, required: true },
     description: String,
-    lessons: [lessonSchema],
+    // lessons: [lessonSchema],
   },
   { collection: "modules" }
 );
