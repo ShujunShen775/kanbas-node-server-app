@@ -5,7 +5,7 @@ const gradeSchema = new mongoose.Schema(
     authorId: { type: mongoose.Schema.Types.ObjectId, required: true },
     quizId: { type: mongoose.Schema.Types.ObjectId, required: true },
     courseId: { type: mongoose.Schema.Types.ObjectId, required: true },
-    answers: [String],
+    answers: [String | [String]],
     score: { type: Number, required: true },
   },
   { collection: "grades" }
