@@ -32,8 +32,8 @@ export default function GradeRoutes(app) {
     res.json(questions);
   };
   const findAllGradesByCourseId = async (req, res) => {
-    const { quizId } = req.params;
-    const [grades, users, quizzes] = await dao.findAllGradesByCourse(quizId);
+    const { courseId } = req.params;
+    const [grades, users, quizzes] = await dao.findAllGradesByCourse(courseId);
     grades.forEach((i) => console.log(i));
     res.json(
       grades.map((i, index) => ({
@@ -45,8 +45,8 @@ export default function GradeRoutes(app) {
     );
   };
   const findAllGradesByQuizId = async (req, res) => {
-    const { courseId } = req.params;
-    const status = await dao.findAllGradesByQuiz(courseId);
+    const { quizId } = req.params;
+    const status = await dao.findAllGradesByQuiz(quizId);
     res.json(status);
   };
   const getGradeByQuizAndUser = async (req, res) => {
